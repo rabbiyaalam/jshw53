@@ -1,0 +1,88 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>DOM</title>  
+</head>  
+<body>  
+
+<div>  
+    <h1> DOM </h1>  
+    <div id="form-content" class="content">  
+        <label for="first-name">First Name</label>  
+        <input type="text" id="first-name" />  
+        <label for="last-name">Last Name</label>  
+        <input type="text" id="last-name" />  
+        <label for="email">Email</label>  
+        <input type="text" id="email" />  
+    </div>  
+    <div id="main-content" class="content">  
+        <p class="render"> First Name : Rabi</p>  
+        <p class="render" id="lastName">Last Name: Alam</p>  
+        <p class="render"> Email : rabialam@icloud.com</p>  
+        <p class="render"> Country : Pakistan </p>  
+        <p class="render"> contact : +92 3368900499</p>  
+    </div>  
+</div>  
+
+<script>  
+    // i. Get the element of id “main-content” and assign it to a variable  
+    const mainContent = document.getElementById("main-content");  
+
+    // ii. Display all child elements of the “main-content” element  
+    const childElements = mainContent.children;  
+    let childElementsHTML = "Child Elements of main-content:<br>";  
+    for (let i = 0; i < childElements.length; i++) {  
+        childElementsHTML += childElements[i].outerHTML + "<br>";  
+    }  
+    document.body.insertAdjacentHTML('beforeend', `<h2>${childElementsHTML}</h2>`);  
+
+    // iii. Get all elements of class “render” and show their innerHTML in the browser  
+    const renderElements = document.getElementsByClassName("render");  
+    let renderTexts = "Contents of render class:<br>";  
+    for (let i = 0; i < renderElements.length; i++) {  
+        renderTexts += renderElements[i].innerHTML + "<br>";  
+    }  
+    document.body.insertAdjacentHTML('beforeend', `<h2>${renderTexts}</h2>`);  
+
+    // iv. Fill input value whose element id first-name using JavaScript  
+    document.getElementById("first-name").value = "Rabi";  
+
+    // v. Repeat part iv for id “last-name” and “email”  
+    document.getElementById("last-name").value = "Alam";  
+    document.getElementById("email").value = "rabialam@icloudcom";  
+
+    // 2. Additional questions  
+    // i. Node type of element having id “form-content”  
+    const formContentNodeType = document.getElementById("form-content").nodeType;  
+    document.body.insertAdjacentHTML('beforeend', `<h2>Node Type of form-content: ${formContentNodeType}</h2>`);  
+
+    // ii. Node type of element having id “lastName” and its child node  
+    const lastNameElement = document.getElementById("lastName");  
+    const lastNameNodeType = lastNameElement.nodeType;  
+    const lastNameChildNode = lastNameElement.firstChild.nodeType; // Text node type  
+    document.body.insertAdjacentHTML('beforeend', `<h2>Node Type of lastName: ${lastNameNodeType}, Child Node Type: ${lastNameChildNode}</h2>`);  
+
+    // iii. Update child node of element having id “lastName”  
+    lastNameElement.firstChild.nodeValue = "Last Name: alam";  
+    
+    // iv. Get First and last child of id “main-content”  
+    const firstChild = mainContent.firstChild;  
+    const lastChild = mainContent.lastChild;  
+    document.body.insertAdjacentHTML('beforeend', `<h2>First Child of main-content: ${firstChild.nodeType === 1 ? firstChild.outerHTML : 'Text Node'}, Last Child: ${lastChild.nodeType === 1 ? lastChild.outerHTML : 'Text Node'}</h2>`);  
+
+    // v. Get next and previous siblings of id “lastName”  
+    const lastNameElementPrev = lastNameElement.previousSibling;  
+    const lastNameElementNext = lastNameElement.nextSibling;  
+    document.body.insertAdjacentHTML('beforeend', `<h2>Previous Sibling of lastName: ${lastNameElementPrev ? lastNameElementPrev.nodeType === 1 ? lastNameElementPrev.outerHTML : 'Text Node' : 'None'}, Next Sibling: ${lastNameElementNext ? lastNameElementNext.nodeType === 1 ? lastNameElementNext.outerHTML : 'Text Node' : 'None'}</h2>`);  
+
+    // vi. Get parent node and node type of element having id “email”  
+    const emailElement = document.getElementById("email");  
+    const emailParentNode = emailElement.parentNode;  
+    const emailNodeType = emailElement.nodeType;  
+    document.body.insertAdjacentHTML('beforeend', `<h2>Parent Node of email: ${emailParentNode.nodeType === 1 ? emailParentNode.outerHTML : 'Text Node'}, Node Type of Email: ${emailNodeType}</h2>`);  
+</script>  
+
+</body>  
+</html>
